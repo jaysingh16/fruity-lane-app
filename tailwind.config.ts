@@ -57,6 +57,25 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        fruit: {
+          green: "hsl(var(--green-fresh))",
+          "green-light": "hsl(var(--green-light))",
+          orange: "hsl(var(--orange-citrus))",
+          red: "hsl(var(--red-berry))",
+          yellow: "hsl(var(--yellow-banana))",
+          purple: "hsl(var(--purple-grape))",
+        },
+      },
+      boxShadow: {
+        soft: "var(--shadow-soft)",
+        card: "var(--shadow-card)",
+        hover: "var(--shadow-hover)",
+      },
+      backgroundImage: {
+        "gradient-green": "var(--gradient-green)",
+        "gradient-orange": "var(--gradient-orange)",
+        "gradient-purple": "var(--gradient-purple)",
+        "gradient-red": "var(--gradient-red)",
       },
       borderRadius: {
         lg: "var(--radius)",
