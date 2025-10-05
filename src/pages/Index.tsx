@@ -89,14 +89,14 @@ const Index = () => {
         </section>
 
         {/* Flash Sale Badge */}
-        <div className="flex gap-4 overflow-x-auto pb-2 -mx-1 px-1">
-          <button className="px-6 py-2 bg-primary text-primary-foreground rounded-full font-bold text-sm whitespace-nowrap shadow-md hover:shadow-lg transition-all">
-            Flash Sale ⚡
+        <div className="flex gap-6 overflow-x-auto pb-2 mb-2">
+          <button className="font-bold text-lg text-muted-foreground/30 whitespace-nowrap transition-colors">
+            Flash Sale
           </button>
-          <button className="px-6 py-2 bg-card text-foreground rounded-full font-semibold text-sm whitespace-nowrap shadow-soft hover:shadow-card transition-all">
+          <button className="font-bold text-lg text-foreground whitespace-nowrap transition-colors">
             Popular
           </button>
-          <button className="px-6 py-2 bg-card text-foreground rounded-full font-semibold text-sm whitespace-nowrap shadow-soft hover:shadow-card transition-all">
+          <button className="font-bold text-lg text-muted-foreground/30 whitespace-nowrap transition-colors">
             New Arrival
           </button>
         </div>
