@@ -1,17 +1,36 @@
 import { MapPin, ShoppingCart, Search } from "lucide-react";
 import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 interface HeaderProps {
-  cartCount?: number;
   location?: string;
   onSearchChange?: (value: string) => void;
 }
 
 const Header = ({ 
-  cartCount = 0, 
   location = "Pune, India",
   onSearchChange 
 }: HeaderProps) => {
+  const navigate = useNavigate();
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    const updateCartCount = () => {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      const total = cart.reduce((sum: number, item: any) => sum + item.quantity, 0);
+      setCartCount(total);
+    };
+
+    updateCartCount();
+    window.addEventListener("storage", updateCartCount);
+    const interval = setInterval(updateCartCount, 500);
+    
+    return () => {
+      window.removeEventListener("storage", updateCartCount);
+      clearInterval(interval);
+    };
+  }, []);
   return (
     <header className="bg-card sticky top-0 z-50 shadow-soft rounded-b-3xl">
       <div className="max-w-7xl mx-auto px-4 py-4 space-y-4">
@@ -28,6 +47,7 @@ const Header = ({
           <Button 
             variant="default"
             size="sm"
+            onClick={() => navigate("/cart")}
             className="relative rounded-xl bg-primary hover:bg-primary/90 shadow-md"
           >
             <ShoppingCart size={18} />

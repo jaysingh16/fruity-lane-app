@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import CategoryCard from "@/components/CategoryCard";
 import ProductCard from "@/components/ProductCard";
@@ -18,8 +18,7 @@ import kiwiImg from "@/assets/kiwi.jpg";
 import mangoImg from "@/assets/mango.jpg";
 
 const Index = () => {
-  const [cartCount, setCartCount] = useState(0);
-  const [activeTab, setActiveTab] = useState("home");
+  const navigate = useNavigate();
 
   const categories = [
     { name: "Apples", icon: "🍎", gradient: "bg-gradient-red" },
@@ -44,23 +43,35 @@ const Index = () => {
     { name: "Sweet Mangoes", price: 180, unit: "1 kg", image: mangoImg },
   ];
 
-  const handleAddToCart = (productName: string) => {
-    setCartCount(prev => prev + 1);
-    toast.success(`${productName} added to cart!`, {
+  const handleAddToCart = (product: typeof products[0]) => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const existingItem = cart.find((item: any) => item.name === product.name);
+    
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+    
+    localStorage.setItem("cart", JSON.stringify(cart));
+    toast.success(`${product.name} added to cart!`, {
       duration: 2000,
     });
   };
 
   return (
     <div className="min-h-screen bg-background pb-20">
-      <Header cartCount={cartCount} />
+      <Header />
 
       <main className="max-w-7xl mx-auto px-4 py-6 space-y-8">
         {/* Categories Section */}
         <section>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold text-foreground">Categories</h2>
-            <button className="text-sm font-semibold text-primary hover:underline">
+            <button 
+              onClick={() => navigate("/categories")}
+              className="text-sm font-semibold text-primary hover:underline"
+            >
               View All
             </button>
           </div>
@@ -71,7 +82,7 @@ const Index = () => {
                 name={category.name}
                 icon={category.icon}
                 gradient={category.gradient}
-                onClick={() => toast.info(`${category.name} category selected`)}
+                onClick={() => navigate(`/categories?name=${category.name}`)}
               />
             ))}
           </div>
@@ -101,7 +112,7 @@ const Index = () => {
                 price={product.price}
                 unit={product.unit}
                 image={product.image}
-                onAddToCart={() => handleAddToCart(product.name)}
+                onAddToCart={() => handleAddToCart(product)}
               />
             ))}
           </div>
@@ -145,7 +156,7 @@ const Index = () => {
         </section>
       </main>
 
-      <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
+      <BottomNav />
     </div>
   );
 };

@@ -1,18 +1,27 @@
 import { Home, Grid, Package, User } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useNavigate, useLocation } from "react-router-dom";
 
-interface BottomNavProps {
-  activeTab?: string;
-  onTabChange?: (tab: string) => void;
-}
+const BottomNav = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-const BottomNav = ({ activeTab = "home", onTabChange }: BottomNavProps) => {
   const tabs = [
-    { id: "home", label: "Home", icon: Home },
-    { id: "categories", label: "Categories", icon: Grid },
-    { id: "orders", label: "Orders", icon: Package },
-    { id: "profile", label: "Profile", icon: User },
+    { id: "home", label: "Home", icon: Home, path: "/" },
+    { id: "categories", label: "Categories", icon: Grid, path: "/categories" },
+    { id: "orders", label: "Orders", icon: Package, path: "/orders" },
+    { id: "profile", label: "Profile", icon: User, path: "/" },
   ];
+
+  const getActiveTab = () => {
+    const currentPath = location.pathname;
+    if (currentPath === "/") return "home";
+    if (currentPath.startsWith("/categories")) return "categories";
+    if (currentPath.startsWith("/orders")) return "orders";
+    return "home";
+  };
+
+  const activeTab = getActiveTab();
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-card border-t border-border shadow-soft z-50">
@@ -25,7 +34,7 @@ const BottomNav = ({ activeTab = "home", onTabChange }: BottomNavProps) => {
             return (
               <button
                 key={tab.id}
-                onClick={() => onTabChange?.(tab.id)}
+                onClick={() => navigate(tab.path)}
                 className={cn(
                   "flex flex-col items-center gap-1 transition-colors",
                   isActive ? "text-primary" : "text-muted-foreground"
