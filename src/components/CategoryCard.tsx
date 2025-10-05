@@ -12,14 +12,14 @@ const CategoryCard = ({ name, icon, gradient, onClick }: CategoryCardProps) => {
     <button
       onClick={onClick}
       className={cn(
-        "group flex flex-col items-center gap-2 p-4 rounded-2xl shadow-soft hover:shadow-card transition-all duration-300 hover:scale-105",
+        "group flex flex-col items-center gap-2 p-4 rounded-3xl shadow-soft hover:shadow-card transition-all duration-300 hover:scale-105",
         gradient
       )}
     >
       <div className="text-4xl transition-transform group-hover:scale-110">
         {icon}
       </div>
-      <span className="text-xs font-semibold text-card-foreground">
+      <span className="text-xs font-semibold text-foreground">
         {name}
       </span>
     </button>

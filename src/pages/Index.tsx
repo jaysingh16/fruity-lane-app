@@ -21,14 +21,14 @@ const Index = () => {
   const navigate = useNavigate();
 
   const categories = [
-    { name: "Apples", icon: "🍎", gradient: "bg-gradient-red" },
-    { name: "Bananas", icon: "🍌", gradient: "bg-gradient-orange" },
-    { name: "Watermelon", icon: "🍉", gradient: "bg-gradient-red" },
-    { name: "Grapes", icon: "🍇", gradient: "bg-gradient-purple" },
-    { name: "Oranges", icon: "🍊", gradient: "bg-gradient-orange" },
-    { name: "Pineapple", icon: "🍍", gradient: "bg-gradient-orange" },
-    { name: "Berries", icon: "🍓", gradient: "bg-gradient-red" },
-    { name: "Kiwi", icon: "🥝", gradient: "bg-gradient-green" },
+    { name: "Apples", icon: "🍎", gradient: "bg-pastel-peach" },
+    { name: "Bananas", icon: "🍌", gradient: "bg-pastel-yellow" },
+    { name: "Watermelon", icon: "🍉", gradient: "bg-pastel-pink" },
+    { name: "Grapes", icon: "🍇", gradient: "bg-pastel-purple" },
+    { name: "Oranges", icon: "🍊", gradient: "bg-pastel-orange" },
+    { name: "Pineapple", icon: "🍍", gradient: "bg-pastel-cream" },
+    { name: "Berries", icon: "🍓", gradient: "bg-pastel-pink" },
+    { name: "Kiwi", icon: "🥝", gradient: "bg-pastel-green" },
   ];
 
   const products = [

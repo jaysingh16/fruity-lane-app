@@ -65,6 +65,16 @@ export default {
           yellow: "hsl(var(--yellow-banana))",
           purple: "hsl(var(--purple-grape))",
         },
+        pastel: {
+          peach: "hsl(var(--pastel-peach))",
+          yellow: "hsl(var(--pastel-yellow))",
+          pink: "hsl(var(--pastel-pink))",
+          cream: "hsl(var(--pastel-cream))",
+          orange: "hsl(var(--pastel-orange))",
+          purple: "hsl(var(--pastel-purple))",
+          green: "hsl(var(--pastel-green))",
+          blue: "hsl(var(--pastel-blue))",
+        },
       },
       boxShadow: {
         soft: "var(--shadow-soft)",
